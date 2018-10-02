@@ -1,0 +1,13 @@
+sudo apt install php7.2-fpm
+sudo a2enmod php7.2
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php7.2-fpm
+sudo service apache2 restart
+
+composer create-project symfony/framework-standard-edition symfony/ "3.0.7"
+php bin/console server:run
+
+php bin/console generate:bundle
+php bin/console doctrine:mapping:import BackendBundle yml
+php bin/console doctrine:mapping:import BackendBundle annotation
+php bin/console doctrine:generate:entities AppBundle:awsProductsShoes
