@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -29,9 +30,10 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function login(Request $request)
+    public function loginAction(Request $request)
     {
       $helpers = $this->get('app.helpers');
+      $jwt_auth = $this->get('app.jwt_auth');
 
       $json = $request->get("json", null);
 
@@ -40,6 +42,7 @@ class DefaultController extends Controller
 
         $email = (isset($params->email)) ? $params->email : null;
         $password = (isset($params->password)) ? $params->password : null;
+        $getHash = (isset($params->getHash)) ? $params->getHash : null;
 
         $emailContraint = new Assert\Email();
         $emailContraint->message = "This email is not valid!";
@@ -47,13 +50,26 @@ class DefaultController extends Controller
         $validate_email = $this->get("validator")->validate($email, $emailContraint);
 
         if (count($validate_email) == 0 && $password != null) {
-          echo "Data success";
+
+          if ($getHash == null) {
+            $signup = $jwt_auth->signup($email, $password);
+          } else {
+            $signup = $jwt_auth->signup($email, $password, true);
+          }
+
+          return new JsonResponse($signup);
         } else {
-          echo "Data incorrect";
+          return $helpers->json(array(
+            'status' => 'error',
+            'data' => 'Login not valid!!'
+          ));
+
         }
       } else {
-        echo "Send json with post!!";
-        die();
+        return $helpers->json(array(
+          'status' => 'error',
+          'data' => 'Send json with post!!'
+        ));
       }
 
 
