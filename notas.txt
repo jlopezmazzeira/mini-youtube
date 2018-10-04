@@ -11,3 +11,9 @@ php bin/console generate:bundle
 php bin/console doctrine:mapping:import BackendBundle yml
 php bin/console doctrine:mapping:import BackendBundle annotation
 php bin/console doctrine:generate:entities AppBundle:awsProductsShoes
+
+//Para manejar token
+"firebase/php-jwt": "^3.0.0",
+
+//para paginar
+"knplabs/knp-paginator-bundle": "2.5.*"
