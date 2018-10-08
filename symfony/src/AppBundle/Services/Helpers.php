@@ -13,7 +13,7 @@ class Helpers
     $this->jwt_auth = $jwt_auth;
   }
 
-  public function authCheck($has, $getIdentity)
+  public function authCheck($has, $getIdentity = false)
   {
     $jwt_auth = $this->jwt_auth;
     $auth  = false;
