@@ -9,3 +9,6 @@ php bin/console server:run
 
 php bin/console generate:bundle
 php bin/console doctrine:mapping:import BackendBundle yml
+
+ng new name-application
+ng serve 
