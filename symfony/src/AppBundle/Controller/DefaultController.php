@@ -42,7 +42,7 @@ class DefaultController extends Controller
 
         $email = (isset($params->email)) ? $params->email : null;
         $password = (isset($params->password)) ? $params->password : null;
-        $getHash = (isset($params->getHash)) ? $params->getHash : null;
+        $getHash = (isset($params->gethash)) ? $params->gethash : null;
 
         $emailContraint = new Assert\Email();
         $emailContraint->message = "This email is not valid!";
@@ -54,8 +54,8 @@ class DefaultController extends Controller
 
         if (count($validate_email) == 0 && $password != null) {
 
-          if ($getHash == null) {
-            $signup = $jwt_auth->signup($email, $pwd);
+          if ($getHash == null || !$getHash) {
+            $signup = $jwt_auth->signup($email, $pwd, false);
           } else {
             $signup = $jwt_auth->signup($email, $pwd, true);
           }

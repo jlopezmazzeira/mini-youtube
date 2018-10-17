@@ -16,7 +16,7 @@ class JwtAuth
     $this->key = "clave-secreta";
   }
 
-  public function signup($email, $password, $getHash = NULL)
+  public function signup($email, $password, $getHash)
   {
     $key = $this->key;
 
@@ -46,7 +46,7 @@ class JwtAuth
       $jwt = JWT::encode($token, $key, 'HS256');
       $decoded = JWT::decode($jwt, $key, array('HS256'));
 
-      if ($getHash == null) {
+      if ($getHash) {
         return $jwt;
       } else {
         return $decoded;
