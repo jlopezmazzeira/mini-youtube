@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params} from '@angular/router';
 import { User } from '../../models/user';
 import { LoginService } from '../../services/login/login.service';
 
@@ -15,16 +16,31 @@ export class LoginComponent implements OnInit {
   public identity;
   public token;
 
-  constructor(private _ls: LoginService) { }
+  constructor(private _ls: LoginService,
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.route.params.subscribe(params => {
+      let logout = +params["id"];
+
+      if(logout == 1){
+        localStorage.removeItem("token");
+        localStorage.removeItem("identity");
+
+        this.identity = null;
+        this.token = null;
+
+        window.location.href = "/login";
+      }
+    });
+  }
 
   ngOnInit() {
     this.user = new User("", "", false);
 
     let ide = this._ls.getIdentity();
-    let tk = this._ls.getToken();
-
-    console.log(ide);
-    console.log(tk);
+    if(ide != null && ide.sub){
+      this.router.navigate(["/index"]);
+    }
   }
 
   onSubmit(){
@@ -48,6 +64,7 @@ export class LoginComponent implements OnInit {
                 } else {
                   if(!this.token.status){
                     localStorage.setItem("token", JSON.stringify(token));
+                    window.location.href = "/";
                   }
                 }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params} from '@angular/router';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
   selector: 'app-default',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./default.component.css']
 })
 export class DefaultComponent implements OnInit {
+  public identity;
+  public token;
+  public titulo = "Portada";
 
-  constructor() { }
+  constructor(private _ls: LoginService) { }
 
   ngOnInit() {
+    this.identity = this._ls.getIdentity();
+    this.token = this._ls.getToken();
   }
 
 }

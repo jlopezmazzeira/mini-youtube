@@ -14,6 +14,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { VideoAddComponent } from './components/video-add/video-add.component';
 import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
