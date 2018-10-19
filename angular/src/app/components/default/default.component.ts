@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
-import { LoginService } from '../../services/login/login.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-default',
@@ -12,11 +12,11 @@ export class DefaultComponent implements OnInit {
   public token;
   public titulo = "Portada";
 
-  constructor(private _ls: LoginService) { }
+  constructor(private _us: UserService) { }
 
   ngOnInit() {
-    this.identity = this._ls.getIdentity();
-    this.token = this._ls.getToken();
+    this.identity = this._us.getIdentity();
+    this.token = this._us.getToken();
   }
 
 }

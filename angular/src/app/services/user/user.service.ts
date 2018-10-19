@@ -3,11 +3,12 @@ import { Http, Response, Headers} from '@angular/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user';
+import { Person } from '../../models/person';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class UserService {
 
   public url = "http://localhost:8000/";
   public identity;
@@ -46,5 +47,14 @@ export class LoginService {
     }
 
     return this.token;
+  }
+
+  register(user_to_register: Person){
+    let json = user_to_register;
+    let params = JSON.stringify(json);
+    params = "json="+params;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    return this._http.post(this.url+"user/new", params, {headers: headers})
+                      .pipe(map(res => res.json()));
   }
 }

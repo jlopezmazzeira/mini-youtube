@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { User } from '../../models/user';
-import { LoginService } from '../../services/login/login.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   public identity;
   public token;
 
-  constructor(private _ls: LoginService,
+  constructor(private _us: UserService,
               private route: ActivatedRoute,
               private router: Router) {
     this.route.params.subscribe(params => {
@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.user = new User("", "", false);
 
-    let ide = this._ls.getIdentity();
+    let ide = this._us.getIdentity();
     if(ide != null && ide.sub){
       this.router.navigate(["/index"]);
     }
   }
 
   onSubmit(){
-    this._ls.signup(this.user).subscribe(
+    this._us.signup(this.user).subscribe(
       response => {
         let identity = response;
         this.identity = identity;
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
           if(!identity.status){
             localStorage.setItem("identity", JSON.stringify(identity));
             this.user.gethash = true;
-            this._ls.signup(this.user).subscribe(
+            this._us.signup(this.user).subscribe(
               response => {
                 let token = response;
                 this.token = token;

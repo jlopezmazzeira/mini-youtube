@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
-import { LoginService } from './services/login/login.service';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,12 @@ export class AppComponent {
   public token;
   title = 'angular';
 
-  constructor(private _ls: LoginService){
+  constructor(private _us: UserService){
   }
 
   ngOnInit() {
 
-    this.identity = this._ls.getIdentity();
-    this.token = this._ls.getToken();
+    this.identity = this._us.getIdentity();
+    this.token = this._us.getToken();
   }
 }
