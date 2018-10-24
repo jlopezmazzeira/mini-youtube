@@ -11,4 +11,45 @@ php bin/console generate:bundle
 php bin/console doctrine:mapping:import BackendBundle yml
 
 ng new name-application
-ng serve 
+ng serve
+
+rxjs
+rxjs-compat
+
+add bootstrap
+
+https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/
+
+1. Instalar bootstrap y los modulos de ngx-bootstrap
+    npm install bootstrap ngx-bootstrap --save
+
+2. Luego se puede realizar un modulo para tener más ordenado el código
+    import { NgModule } from '@angular/core';
+    import { CommonModule } from '@angular/common';
+
+    import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+    import { TooltipModule } from 'ngx-bootstrap/tooltip';
+    import { ModalModule } from 'ngx-bootstrap/modal';
+
+    @NgModule({
+      imports: [
+        CommonModule,
+        BsDropdownModule.forRoot(),
+        TooltipModule.forRoot(),
+        ModalModule.forRoot()
+      ],
+      exports: [BsDropdownModule, TooltipModule, ModalModule]
+    })
+    export class AppBootstrapModule {}
+
+3. Y por último lo agregamos en app.module.ts
+    import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
+
+    @NgModule({
+      imports: [BrowserModule, AppBootstrapModule],
+      // ...
+    })
+    export class AppModule {}
+
+4. Para agregar los estilos debemos copiar la siguiente línea en el style.css
+    @import "~bootstrap/dist/css/bootstrap.css";

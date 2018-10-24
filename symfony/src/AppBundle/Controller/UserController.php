@@ -125,7 +125,7 @@ class UserController extends Controller
             $user->setSurname($surname);
             $user->setRole($role);
 
-            if ($password != null) {
+            if ($password != null && !empty($password)) {
               //cifrar password
               $pwd = hash('sha256', $password);
               $user->setPassword($pwd);
@@ -216,8 +216,8 @@ class UserController extends Controller
 
     } else {
         $data = array(
-          'status' => 'error',
-          'code' => 400,
+          'status' => $authCheck,
+          'code' => $hash,
           'msg' => 'authorization not valid!!'
         );
     }

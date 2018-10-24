@@ -57,4 +57,13 @@ export class UserService {
     return this._http.post(this.url+"user/new", params, {headers: headers})
                       .pipe(map(res => res.json()));
   }
+
+  update_user(user_to_update: Person){
+    let json = user_to_update;
+    let params = JSON.stringify(json);
+    params = "json="+params+"&authorization="+this.getToken();
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    return this._http.post(this.url+"user/edit", params, {headers: headers})
+                      .pipe(map(res => res.json()));
+  }
 }
