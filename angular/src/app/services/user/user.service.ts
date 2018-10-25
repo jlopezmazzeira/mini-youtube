@@ -4,13 +4,13 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user';
 import { Person } from '../../models/person';
+import { GLOBAL } from '../global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  public url = "http://localhost:8000/";
   public identity;
   public token;
 
@@ -21,7 +21,7 @@ export class UserService {
     let params = JSON.stringify(json);
     params = "json="+params;
     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    return this._http.post(this.url+"login", params, {headers: headers})
+    return this._http.post(GLOBAL.url_login, params, {headers: headers})
                       .pipe(map(res => res.json()));
   }
 
@@ -54,7 +54,7 @@ export class UserService {
     let params = JSON.stringify(json);
     params = "json="+params;
     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    return this._http.post(this.url+"user/new", params, {headers: headers})
+    return this._http.post(GLOBAL.url_user+"new", params, {headers: headers})
                       .pipe(map(res => res.json()));
   }
 
@@ -63,7 +63,7 @@ export class UserService {
     let params = JSON.stringify(json);
     params = "json="+params+"&authorization="+this.getToken();
     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-    return this._http.post(this.url+"user/edit", params, {headers: headers})
+    return this._http.post(GLOBAL.url_user+"edit", params, {headers: headers})
                       .pipe(map(res => res.json()));
   }
 }

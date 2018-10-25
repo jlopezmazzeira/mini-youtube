@@ -5,20 +5,21 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { appRoutingProviders, routing} from './app.routing';
 
 import { AppComponent } from './app.component';
+import { DefaultComponent } from './components/default/default.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { DefaultComponent } from './components/default/default.component';
-import { CommentComponent } from './components/comment/comment.component';
-import { VideoAddComponent } from './components/video-add/video-add.component';
-import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
-
-import { UserService} from './services/user/user.service';
-import { UploadService} from './services/upload/upload.service';
+import { VideoAddComponent } from './components/video-add/video-add.component';
 import { VideoEditComponent } from './components/video-edit/video-edit.component';
+import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 import { SearchComponent } from './components/search/search.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ChannelComponent } from './components/channel/channel.component';
+
+import { UserService} from './services/user/user.service';
+import { CommentService} from './services/comment/comment.service';
+import { VideoService} from './services/video/video.service';
+import { UploadService} from './services/upload/upload.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,6 @@ import { ChannelComponent } from './components/channel/channel.component';
     LoginComponent,
     RegisterComponent,
     DefaultComponent,
-    CommentComponent,
     VideoAddComponent,
     VideoDetailComponent,
     EditUserComponent,
@@ -43,6 +43,8 @@ import { ChannelComponent } from './components/channel/channel.component';
   ],
   providers: [
     UserService,
+    CommentService,
+    VideoService,
     UploadService,
     appRoutingProviders
   ],
