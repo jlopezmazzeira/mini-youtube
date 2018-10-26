@@ -78,7 +78,7 @@ export class EditUserComponent implements OnInit {
     this.fileToUpload = <Array<File>>fileInput.target.files;
 
     let token = this._us.getToken();
-    let url = GLOBAL.url_user+"/upload-image-user";
+    let url = GLOBAL.url_user+"upload-image-user";
     this._ups.makeFileRequest(token, url, ['image'], this.fileToUpload).then(
       (result) => {
         this.resultUpload = result;

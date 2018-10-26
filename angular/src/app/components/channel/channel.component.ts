@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChannelComponent implements OnInit {
 
+  public titulo: string = "Mi Canal";
+  
   constructor() { }
 
   ngOnInit() {

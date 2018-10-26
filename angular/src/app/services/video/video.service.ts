@@ -12,18 +12,25 @@ export class VideoService {
 
   constructor(private _http: Http) { }
 
-  create(){}
-  
+  create(token: string, video: Video){
+    let json = video;
+    let params = JSON.stringify(json);
+    params = "json="+params+"&authorization="+token;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    return this._http.post(GLOBAL.url_video+"new", params, {headers: headers})
+                      .pipe(map(res => res.json()));
+  }
+
   update(){}
-  
+
   getVideo(){}
-  
+
   getLastsVideos(){}
-  
+
   getVideos(){}
-  
+
   search(){}
-  
+
   getChannel(){}
-  
+
 }
