@@ -226,7 +226,7 @@ class VideoController extends Controller
 
                   $file_name = time().".".$ext;
                   $path_of_file = "uploads/video_images/video_".$video_id;
-                  $file->move($path_of_file, $file_name);
+                  $file_video->move($path_of_file, $file_name);
                   $video->setVideoPath($file_name);
                   $em->persist($video);
                   $em->flush();
