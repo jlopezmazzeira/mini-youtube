@@ -18,3 +18,11 @@
   margin-top: -20px;
   margin-left: -20px;
 }
+
+#video-player{
+  width: 100%;
+}
+
+#video-data{
+  margin-top: 15px;
+}

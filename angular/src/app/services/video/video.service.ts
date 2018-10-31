@@ -23,7 +23,10 @@ export class VideoService {
 
   update(){}
 
-  getVideo(){}
+  getVideo(id: number){
+    return this._http.get(GLOBAL.url_video+"detail/"+id)
+                      .pipe(map(res => res.json()));
+  }
 
   getLastsVideos(){}
 

@@ -20,6 +20,7 @@ import { UserService} from './services/user/user.service';
 import { CommentService} from './services/comment/comment.service';
 import { VideoService} from './services/video/video.service';
 import { UploadService} from './services/upload/upload.service';
+import { DatePipe } from './pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UploadService} from './services/upload/upload.service';
     VideoEditComponent,
     SearchComponent,
     CommentsComponent,
-    ChannelComponent
+    ChannelComponent,
+    DatePipe
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,26 @@
-<p>
-  video-detail works!
-</p>
+<div class="loader" *ngIf="loading == 'show'">
+  <img src="assets/images/ajax-gray.gif">
+</div>
+<div class="col-md-12" *ngIf="video">
+  <hr>
+  <h1>{{ titulo }}</h1>
+  <hr>
+  <h3>{{video.title}}</h3>
+  <div class="col-md-8">
+    <video controls id="video-player">
+      <source src="{{url}}{{video.videoPath}}">
+        Tu navegador no es compatible con el video
+    </video>
+    <div class="panel panel-default video-data">
+      <div class="panel-heading">
+        <h3 clas="panel-title">
+          Subido por <strong>{{video.user.name}} {{video.user.surname}}</strong>
+          el {{video.createdAt.timestamp | date}}
+        </h3>
+      </div>
+      <div class="panel-body">
+        {{video.description}}
+      </div>
+    </div>
+  </div>
+</div>
