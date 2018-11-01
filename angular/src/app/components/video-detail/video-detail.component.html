@@ -1,7 +1,7 @@
 <div class="loader" *ngIf="loading == 'show'">
   <img src="assets/images/ajax-gray.gif">
 </div>
-<div class="col-md-12" *ngIf="video">
+<div class="col-md-12" *ngIf="video && loading == 'hide'">
   <hr>
   <h1>{{ titulo }}</h1>
   <hr>
@@ -22,5 +22,23 @@
         {{video.description}}
       </div>
     </div>
+    <app-comments *ngIf="identity"></app-comments>
   </div>
+  
+  <div class="col-md-4">
+    <h3>Otros Videos</h3>
+    <hr>
+    <ul id="videos-list" *ngIf="lastsVideos">
+      <li *ngFor="let video of lastsVideos" class="last-video-item col-md-12 pull-left">
+        <div class="last-video-image-thumb col-md-4 pull-left">
+          <img src="{{url}}{{video.image}}" *ngIf="video.image">
+        </div>
+        <div class="data col-md-8 pull-left">
+          <h5><a routerLink="/video/video.id">{{ video.title }}</a></h5>
+          <a>{{ video.user.name }} {{ video.user.surname }}</a>
+        </div>
+      </li>
+    </ul>
+  </div> 
+
 </div>

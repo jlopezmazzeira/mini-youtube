@@ -4,6 +4,7 @@ import { Video } from '../../models/video';
 import { VideoService } from '../../services/video/video.service';
 import { UserService } from '../../services/user/user.service';
 import { GLOBAL } from '../../services/global';
+import { CommentsComponent } from '../comments/comments.component';
 
 @Component({
   selector: 'app-video-detail',
@@ -18,7 +19,10 @@ export class VideoDetailComponent implements OnInit {
   public status;
   public loading: string = 'show';
   public url: string = null;
-
+  public lastsVideos;
+  public statusLastsVideos;
+  public identity;
+   
   constructor(private _vs: VideoService,
               private _us: UserService,
               private route: ActivatedRoute,
@@ -27,7 +31,9 @@ export class VideoDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.identity = this._us.getIdentity();
     this.route.params.subscribe(params => {
+      this.loading = "show";
       let id = +params["id"];
 
       this._vs.getVideo(id).subscribe(
@@ -41,6 +47,24 @@ export class VideoDetailComponent implements OnInit {
 
           this.loading = 'hide';
           this.url = GLOBAL.url_image_video+this.video.id+"/";
+        },
+        error => {
+          this.errorMessage = <any>error;
+          if(this.errorMessage != null){
+            console.log(this.errorMessage);
+            alert('Error en la petición');
+          }
+        }
+      );
+
+      this._vs.getLastsVideos().subscribe(
+        response => {
+          this.lastsVideos = response.data;
+          this.statusLastsVideos = response.status;
+
+          if(this.statusLastsVideos != "success"){
+              this.router.navigate(['/index']);
+          }
         },
         error => {
           this.errorMessage = <any>error;

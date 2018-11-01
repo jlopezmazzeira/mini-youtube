@@ -28,7 +28,10 @@ export class VideoService {
                       .pipe(map(res => res.json()));
   }
 
-  getLastsVideos(){}
+  getLastsVideos(){
+  return this._http.get(GLOBAL.url_video+"lasts-videos/")
+                      .pipe(map(res => res.json()));
+  }
 
   getVideos(){}
 

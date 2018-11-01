@@ -1,7 +1,6 @@
 export class Comment {
   constructor(
-    public email: string,
-    public password: string,
-    public gethash: boolean
+    public video_id: number,
+    public body: string
   ){}
 }

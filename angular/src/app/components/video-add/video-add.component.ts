@@ -61,6 +61,7 @@ export class VideoAddComponent implements OnInit {
 
   public fileToUpload: Array<File>;
   public resultUpload;
+  
   fileChangeEventImage(fileInput: any){
     this.fileToUpload = <Array<File>>fileInput.target.files;
 
@@ -100,7 +101,7 @@ export class VideoAddComponent implements OnInit {
   }
 
   redirectToVideo(){
-    this.router.navigate(['/index']);
+    this.router.navigate(['/video', this.video.id]);
 
   }
 
