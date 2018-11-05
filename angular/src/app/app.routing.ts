@@ -14,6 +14,7 @@ import { ChannelComponent } from './components/channel/channel.component';
 export const routes: Routes = [
   { path: '', component: DefaultComponent },
   { path: 'index', component: DefaultComponent },
+  { path: 'index/:page', component: DefaultComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/:id', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

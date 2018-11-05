@@ -22,7 +22,7 @@ export class VideoDetailComponent implements OnInit {
   public lastsVideos;
   public statusLastsVideos;
   public identity;
-   
+
   constructor(private _vs: VideoService,
               private _us: UserService,
               private route: ActivatedRoute,

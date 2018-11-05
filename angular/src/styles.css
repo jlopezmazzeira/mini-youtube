@@ -56,9 +56,8 @@
 }
 
 .last-video-image-thumb img{
-  width: 80px;
+  width: 120px;
   margin-left: -15px;
-  margin-top: -7px;
 }
 
 .last-video-item .data{
@@ -69,3 +68,33 @@
   height: 62px;
 }
 
+.videos-list{
+  list-style: none;
+  margin: 0px;
+  margin-top: 20px;
+  padding: 0px;
+}
+
+.video-item{
+  margin-bottom: 30px;
+}
+
+.video-image-thumb{
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.video-image-thumb img{
+  width: 100%;
+  margin-top: -15px;
+}
+
+.video-item .data{
+  border: 1px solid #ddd;
+  border-radius: 0px 0px 5px 5px;
+  padding: 10px;
+  border-top: 0px;
+  height: 130px;
+}

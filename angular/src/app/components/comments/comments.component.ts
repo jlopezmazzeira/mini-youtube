@@ -10,18 +10,18 @@ import { CommentService } from '../../services/comment/comment.service';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-	
+
 	public tituloe:string = "Comentarios";
 	public comment: Comment;
 	public identity;
 	public errorMessage;
 	public status;
-	public statusComment;
+	public statusComments;
 	public commentList;
 	public loading = 'show';
 
 	constructor(private _us: UserService,
-  				private _cs: CommentService,
+  				    private _cs: CommentService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -32,9 +32,8 @@ export class CommentsComponent implements OnInit {
   				let id = +params["id"];
 
   				this.comment = new Comment(id, "");
+          this.getComments(id);
   			}
-
-  			this.getComments(id);
   		);
   	}
 
@@ -45,7 +44,7 @@ export class CommentsComponent implements OnInit {
   		this._cs.create(token, this.comment).subscribe(
   			response => {
   				this.status = response.status;
-  				if(!this.status != 'success'){
+  				if(this.status != 'success'){
   					this.status = 'error';
   				} else {
   					this.comment.body = "";
@@ -64,14 +63,15 @@ export class CommentsComponent implements OnInit {
 
   	getComments(video_id: number){
   		this.loading = 'show';
-  		this._cs.getCommmentsOfVideo(video_id).subscribe(
+  		this._cs.getCommentsOfVideo(video_id).subscribe(
   			response => {
   				this.statusComments = response.status;
-  				if(!this.statusComments != 'success'){
+  				if(this.statusComments != 'success'){
   					this.statusComments = 'error';
   				} else {
   					this.commentList = response.data;
   				}
+          this.loading = 'hide';
   			},
   			error => {
   				this.errorMessage = <any>error;
@@ -80,7 +80,6 @@ export class CommentsComponent implements OnInit {
 	            	alert('Error en la petición');
 	          	}
   			}
-  			this.loading = 'hide';
   		);
   	}
 
@@ -95,7 +94,7 @@ export class CommentsComponent implements OnInit {
   		this._cs.delete(token, id).subscribe(
   			response => {
   				this.statusComments = response.status;
-  				if(!this.statusComments != 'success'){
+  				if(this.statusComments != 'success'){
   					this.statusComments = 'error';
   				}
   			},

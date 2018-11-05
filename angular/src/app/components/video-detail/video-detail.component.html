@@ -24,7 +24,7 @@
     </div>
     <app-comments *ngIf="identity"></app-comments>
   </div>
-  
+
   <div class="col-md-4">
     <h3>Otros Videos</h3>
     <hr>
@@ -34,11 +34,11 @@
           <img src="{{url}}{{video.image}}" *ngIf="video.image">
         </div>
         <div class="data col-md-8 pull-left">
-          <h5><a routerLink="/video/video.id">{{ video.title }}</a></h5>
-          <a>{{ video.user.name }} {{ video.user.surname }}</a>
+          <h5><a [routerLink]="['/video', video.id]">{{ video.title }}</a></h5>
+          <a [routerLink]="['/video', video.id]">{{ video.user.name }} {{ video.user.surname }}</a>
         </div>
       </li>
     </ul>
-  </div> 
+  </div>
 
 </div>

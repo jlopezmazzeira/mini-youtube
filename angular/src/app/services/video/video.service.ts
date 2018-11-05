@@ -29,11 +29,18 @@ export class VideoService {
   }
 
   getLastsVideos(){
-  return this._http.get(GLOBAL.url_video+"lasts-videos/")
+  return this._http.get(GLOBAL.url_video+"lasts-videos")
                       .pipe(map(res => res.json()));
   }
 
-  getVideos(){}
+  getVideos(page = null){
+    if(page == null){
+      page = 1;
+    }
+
+    return this._http.get(GLOBAL.url_video+"list?page="+page)
+                        .pipe(map(res => res.json()));
+  }
 
   search(){}
 

@@ -275,7 +275,7 @@ class VideoController extends Controller
 
     $page = $request->query->getInt("page", 1);
     $paginator = $this->get("knp_paginator");
-    $items_per_page = 6;
+    $items_per_page = 2;
 
     $pagination = $paginator->paginate($query, $page, $items_per_page);
     $total_items_count = $pagination->getTotalItemCount();
@@ -285,7 +285,7 @@ class VideoController extends Controller
       'total_items_count' => $total_items_count,
       'page_actual' => $page,
       'items_per_page' => $items_per_page,
-      'total_pages' => ceil($items_per_page / $items_per_page),
+      'total_pages' => ceil($total_items_count / $items_per_page),
       'data' => $pagination
     );
 

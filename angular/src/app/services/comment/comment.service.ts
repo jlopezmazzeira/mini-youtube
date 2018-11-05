@@ -20,17 +20,17 @@ export class CommentService {
     return this._http.post(GLOBAL.url_comment+"new", params, {headers: headers})
                       .pipe(map(res => res.json()));
   }
-  
+
   getCommentsOfVideo(video_id: number){
-  	return this._http.post(GLOBAL.url_comment+"list/"+video_id)
+  	return this._http.get(GLOBAL.url_comment+"list/"+video_id)
                       .pipe(map(res => res.json()));
   }
-  
+
   delete(token: string, comment_id: number){
-  	params = "&authorization="+token;
+  	let params = "&authorization="+token;
     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
     return this._http.post(GLOBAL.url_comment+"delete/"+comment_id, params, {headers: headers})
                       .pipe(map(res => res.json()));
   }
-  
+
 }
