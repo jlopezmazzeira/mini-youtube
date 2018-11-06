@@ -21,7 +21,14 @@ export class VideoService {
                       .pipe(map(res => res.json()));
   }
 
-  update(){}
+  update(token: string, video: Video){
+    let json = video;
+    let params = JSON.stringify(json);
+    params = "json="+params+"&authorization="+token;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    return this._http.post(GLOBAL.url_video+"edit/"+video.id, params, {headers: headers})
+                      .pipe(map(res => res.json()));
+  }
 
   getVideo(id: number){
     return this._http.get(GLOBAL.url_video+"detail/"+id)

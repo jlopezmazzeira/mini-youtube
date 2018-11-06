@@ -1,3 +1,81 @@
-<p>
-  video-edit works!
-</p>
+<div class="col-md-12">
+  <hr>
+  <h1>{{ titulo }}</h1>
+  <hr>
+  <div class="alert alert-success" *ngIf="status == 'success'">
+    Datos básicos de tu video <strong>{{video.title}}</strong> guardados!!!
+  </div>
+  <div class="alert alert-danger" *ngIf="status == 'error'">
+    No se ha podido modificar tu información. Intentalo más tarde.
+  </div>
+
+  <form #updateVideoForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-4">
+    <p>
+      <label for="">Titulo:</label>
+      <input type="text" class="form-control" name="title" required
+             #title="ngModel" [(ngModel)]="video.title">
+      <span *ngIf="!title.valid && title.touched">El titulo es obligatorio</span>
+    </p>
+    <p>
+      <label for="">Descripción:</label>
+      <textarea name="description" class="form-control" required #description="ngModel"
+                [(ngModel)]="video.description" rows="8" cols="80"></textarea>
+    </p>
+    <p>
+      <label for="">Estado</label>
+      <select class="form-control" name="status" (change)="callVideoStatus(status.value)" #status>
+        <option value="public" [attr.selected]="video.status === 'public' ? 'selected' : null ">Público</option>
+        <option value="private" [attr.selected]="video.status === 'private' ? 'selected' : null ">Privado</option>
+      </select>
+    </p>
+    <input type="submit" value="Actualizar" class="btn btn-success" [disabled]="!updateVideoForm.form.valid">
+  </form>
+
+  <button class="btn bt-warning" (onClick)="setChangeUpload('image')" *ngIf="!changeUpload || changeUpload == 'video' || changeUpload == 'false'">Actualizar imagen </button>
+  
+  <div class="col-md-4" *ngIf="changeUpload == 'image'">
+    <h4>Imagen del video</h4>
+    <p>
+      <input type="file" placeholder="Subir Imagen" (change)="fileChangeEventImage($event)">
+    </p>
+    <div class="progress">
+      <div id="upload-progress-bar"
+           class="progress-bar progress-bar-success"
+           role="progress-bar"
+           aria-valuenow="0"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           style="width: 0%;"
+           >
+      </div>
+    </div>
+    <p id="status"></p>
+    <button type="button" class="btn btn-warning" (onClick)="setChangeUpload('false')">
+      Cerrar
+    </button>
+  </div>
+  
+  <button class="btn bt-warning" (onClick)="setChangeUpload('video')" *ngIf="!changeUpload || changeUpload == 'image' || changeUpload == 'false'">Actualizar video </button>
+
+  <div class="col-md-4" *ngIf="changeUpload == 'video">
+    <h4>Sube el video</h4>
+    <p>
+      <input type="file" placeholder="Subir Imagen" (change)="fileChangeEventVideo($event)">
+    </p>
+    <div class="progress">
+      <div id="upload-progress-bar"
+           class="progress-bar progress-bar-success"
+           role="progress-bar"
+           aria-valuenow="0"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           style="width: 0%;"
+           >
+      </div>
+    </div>
+    <p id="status"></p>
+    <button type="button" class="btn btn-warning" (onClick)="setChangeUpload('false')">
+      Cerrar
+    </button>
+  </div>
+</div>

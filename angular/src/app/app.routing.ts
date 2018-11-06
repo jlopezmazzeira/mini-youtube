@@ -20,7 +20,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'user-edit', component: EditUserComponent },
   { path: 'create-video', component: VideoAddComponent },
-  { path: 'edit-video', component: VideoEditComponent },
+  { path: 'edit-video/:id', component: VideoEditComponent },
   { path: 'video/:id', component: VideoDetailComponent },
   { path: 'channel', component: ChannelComponent },
   { path: '**', component: DefaultComponent }
