@@ -1,3 +1,43 @@
-<p>
-  search works!
-</p>
+<div class="col-md-12">
+  <hr>
+  <h1>{{titulo}}: {{ search_string }}</h1>
+  <hr>
+  <div class="all-videos">
+    <div class="loader" *ngIf="loading == 'show'">
+      <img src="assets/images/ajax-gray.gif">
+    </div>
+      <ul class="videos-list" *ngIf="videos && loading == 'hide'">
+        <li class="video-item col-md-4 pull-left" *ngFor="let video of videos">
+          <div class="video-image-thumb">
+            <img src="{{url_image}}{{video.id}}/{{video.image}}" *ngIf="video.image">
+          </div>
+          <div class="data">
+            <h4><a [routerLink]="['/video', video.id]">{{ video.title }}</a></h4>
+            <p>Subido por <a [routerLink]="['/channel', video.user.id]">{{ video.user.name }} {{ video.user.surname }}</a></p>
+            <div class="videos-buttons" *ngIf="identity && identity != null && identity.sub == video.user.id">
+              <a class="btn btn-primary" [routerLink]="['/edit-video', video.id]">Editar</a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+      </ul>
+  </div>
+  <div class="clearfix"></div>
+  <ul class="pagination" *ngIf="search_string">
+    <li>
+      <a [routerLink]="['/search', search_string, pagePrev]" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let page of pages">
+      <a [routerLink]="['/search', search_string, page + 1]">
+        <span aria-hidden="true">{{ page + 1 }}</span>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/search', search_string, pageNext]" aria-label="Next" [className]="total_pages == 1 ? 'hide' : 'show' ">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</div>

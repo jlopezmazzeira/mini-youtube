@@ -1,4 +1,7 @@
-<div class="col-md-12">
+<div class="loader" *ngIf="loading == 'show'">
+  <img src="assets/images/ajax-gray.gif">
+</div>
+<div class="col-md-12" *ngIf="identity && video">
   <hr>
   <h1>{{ titulo }}</h1>
   <hr>
@@ -31,8 +34,8 @@
     <input type="submit" value="Actualizar" class="btn btn-success" [disabled]="!updateVideoForm.form.valid">
   </form>
 
-  <button class="btn bt-warning" (onClick)="setChangeUpload('image')" *ngIf="!changeUpload || changeUpload == 'video' || changeUpload == 'false'">Actualizar imagen </button>
-  
+  <button class="btn btn-warning" (onClick)="setChangeUpload('image')" *ngIf="!changeUpload || changeUpload == 'video' || changeUpload == 'false'">Actualizar imagen </button>
+
   <div class="col-md-4" *ngIf="changeUpload == 'image'">
     <h4>Imagen del video</h4>
     <p>
@@ -54,10 +57,10 @@
       Cerrar
     </button>
   </div>
-  
-  <button class="btn bt-warning" (onClick)="setChangeUpload('video')" *ngIf="!changeUpload || changeUpload == 'image' || changeUpload == 'false'">Actualizar video </button>
 
-  <div class="col-md-4" *ngIf="changeUpload == 'video">
+  <button class="btn btn-warning" (onClick)="setChangeUpload('video')" *ngIf="!changeUpload || changeUpload == 'image' || changeUpload == 'false'">Actualizar video </button>
+
+  <div class="col-md-4" *ngIf="changeUpload == 'video'">
     <h4>Sube el video</h4>
     <p>
       <input type="file" placeholder="Subir Imagen" (change)="fileChangeEventVideo($event)">

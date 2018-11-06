@@ -49,8 +49,32 @@ export class VideoService {
                         .pipe(map(res => res.json()));
   }
 
-  search(){}
+  search(search = null, page = null){
+    if(page == null){
+      page = 1;
+    }
 
-  getChannel(){}
+    let http: any;
+
+    if(search == null){
+      http = this._http.get(GLOBAL.url_video+"search")
+                          .pipe(map(res => res.json()));
+    } else {
+      http = this._http.get(GLOBAL.url_video+"search/"+search+"?page="+page)
+                          .pipe(map(res => res.json()));
+    }
+
+    return http;
+
+  }
+
+  getChannel(user, page = null){
+    if(page == null){
+      page = 1;
+    }
+
+    return this._http.get(GLOBAL.url_user+"channel/"+user+"?page="+page)
+                        .pipe(map(res => res.json()));
+  }
 
 }

@@ -18,7 +18,8 @@ export class VideoAddComponent implements OnInit {
   public errorMessage;
   public status: string;
   public uploadedImage: boolean;
-
+  public identity;
+  
   constructor(private _vs: VideoService,
               private _us: UserService,
               private _ups: UploadService,
@@ -30,7 +31,14 @@ export class VideoAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.video = new Video(1, "", "", "public", "null", "null", null, null);
+    let identity = this._us.getIdentity();
+    this.identity = identity;
+
+    if(identity == null){
+      this.router.navigate(["/index"]);
+    } else {
+      this.video = new Video(1, "", "", "public", "null", "null", null, null);
+    }
   }
 
   callVideoStatus(value){
@@ -61,7 +69,7 @@ export class VideoAddComponent implements OnInit {
 
   public fileToUpload: Array<File>;
   public resultUpload;
-  
+
   fileChangeEventImage(fileInput: any){
     this.fileToUpload = <Array<File>>fileInput.target.files;
 

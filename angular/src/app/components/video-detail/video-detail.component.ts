@@ -46,7 +46,7 @@ export class VideoDetailComponent implements OnInit {
           }
 
           this.loading = 'hide';
-          this.url = GLOBAL.url_image_video+this.video.id+"/";
+          this.url = GLOBAL.url_image_video;
         },
         error => {
           this.errorMessage = <any>error;

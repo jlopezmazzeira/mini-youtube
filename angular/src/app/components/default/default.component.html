@@ -21,9 +21,9 @@
           </div>
           <div class="data">
             <h4><a [routerLink]="['/video', video.id]">{{ video.title }}</a></h4>
-            <p>Subido por <a [routerLink]="['/video', video.id]">{{ video.user.name }} {{ video.user.surname }}</a></p>
+            <p>Subido por <a [routerLink]="['/channel', video.user.id]">{{ video.user.name }} {{ video.user.surname }}</a></p>
             <div class="videos-buttons" *ngIf="identity && identity != null && identity.sub == video.user.id">
-              <a class="btn btn-primary" [routerLink]="['/video', video.id]">Editar</a>
+              <a class="btn btn-primary" [routerLink]="['/edit-video', video.id]">Editar</a>
             </div>
           </div>
           <div class="clearfix"></div>

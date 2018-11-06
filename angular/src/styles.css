@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.btn{
+  margin-right: 5px;
+}
+
 .main{
   margin-top: 65px;
 }
@@ -53,6 +57,7 @@
   height: 61px;
   overflow: hidden;
   background: #E7E7E7;
+  border-radius: 4px 0px 0px 4px;
 }
 
 .last-video-image-thumb img{
@@ -61,7 +66,7 @@
 }
 
 .last-video-item .data{
-  border: 1px solid #ddd !import;
+  border: 1px solid #ddd;
   border-left: 0px solid;
   border-radius:  0px 4px 4px 0px;
   margin-top: -1px;
@@ -97,4 +102,21 @@
   padding: 10px;
   border-top: 0px;
   height: 130px;
+}
+
+.channel-head{
+  text-align: center;
+}
+
+.image-channel{
+  width: 150px;
+  height: 150px;
+  border-radius: 500px;
+  overflow: hidden;
+  margin: 0px auto;
+  background: #ccc;
+}
+
+.image-channel img{
+  height: 160px;
 }

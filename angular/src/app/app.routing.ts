@@ -10,6 +10,7 @@ import { VideoEditComponent } from './components/video-edit/video-edit.component
 import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ChannelComponent } from './components/channel/channel.component';
+import { SearchComponent } from './components/search/search.component';
 
 export const routes: Routes = [
   { path: '', component: DefaultComponent },
@@ -23,6 +24,11 @@ export const routes: Routes = [
   { path: 'edit-video/:id', component: VideoEditComponent },
   { path: 'video/:id', component: VideoDetailComponent },
   { path: 'channel', component: ChannelComponent },
+  { path: 'channel/:user', component: ChannelComponent },
+  { path: 'channel/:user/:page', component: ChannelComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'search/:search', component: SearchComponent },
+  { path: 'search/:search/:page', component: SearchComponent },
   { path: '**', component: DefaultComponent }
 ];
 
