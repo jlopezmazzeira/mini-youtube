@@ -18,7 +18,7 @@
           <li><a routerLink="/index">Home <span class="sr-only">(current)</span></a></li>
           <li *ngIf="identity"><a routerLink="/create-video">Crear video</a></li>
         </ul>
-        <form class="navbar-form navbar-left" role="search" #updateVideoForm="ngForm" (ngSubmit)="search()">
+        <form class="navbar-form navbar-left" role="search" #searchVideoForm="ngForm" (ngSubmit)="search()">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="¿Que quieres ver?" name="search_string" [(ngModel)]="search_string">
           </div>
